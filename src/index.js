@@ -1,13 +1,48 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import Navbar from './components/Header/navbar';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
+import Accueil from './Pages/Accueil';
 import reportWebVitals from './reportWebVitals';
+import Slider from './components/Slider';
+import Menu from './components/Menu';
+import Contact from './Pages/Contact';
+import Boissons from './Pages/Boissons';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Accueil />,
+    children: [
+      {
+        path:"/",
+        element:<Slider />
+      },
+      {
+        path:"/Contact",
+        element:<Contact />
+      },
+      {
+        path:"/Menu",
+        element:<Menu />
+      },
+      {
+        path:"/Boissons",
+        element:<Boissons />
+      }
+
+    ],
+  },
+]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
 
